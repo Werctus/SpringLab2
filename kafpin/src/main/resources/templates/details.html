@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Детали покупателя</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Информация о покупателе</h1>
+
+    <table class="table table-bordered">
+        <tr><th>ID</th><td th:text="${selectedBuyer.id}"/></tr>
+        <tr><th>Фамилия</th><td th:text="${selectedBuyer.surname}"/></tr>
+        <tr><th>Имя</th><td th:text="${selectedBuyer.name}"/></tr>
+        <tr><th>Отчество</th><td th:text="${selectedBuyer.patronymic}"/></tr>
+        <tr><th>Пол</th><td th:text="${selectedBuyer.gender}"/></tr>
+        <tr><th>Национальность</th><td th:text="${selectedBuyer.nationality}"/></tr>
+        <tr><th>Рост</th><td th:text="${selectedBuyer.height}"/></tr>
+        <tr><th>Вес</th><td th:text="${selectedBuyer.weight}"/></tr>
+        <tr><th>Дата рождения</th><td th:text="${selectedBuyer.birthDate}"/></tr>
+        <tr><th>Телефон</th><td th:text="${selectedBuyer.phoneNumber}"/></tr>
+        <tr><th>Кредитная карта</th><td th:text="${selectedBuyer.creditCardNumber}"/></tr>
+        <tr><th>Банковский счёт</th><td th:text="${selectedBuyer.bankAccountNumber}"/></tr>
+    </table>
+
+    <a class="btn btn-secondary" th:href="@{/buyers/main}">Назад</a>
+    <a class="btn btn-warning"
+       th:href="@{'/buyers/update/' + ${selectedBuyer.id}}">Редактировать</a>
+</div>
+</body>
+</html>

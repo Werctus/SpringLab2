@@ -9,5 +9,4 @@ public class KafpinApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KafpinApplication.class, args);
 	}
-
 }

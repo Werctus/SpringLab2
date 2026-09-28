@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Покупатели</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Список покупателей</h1>
+
+    <a class="btn btn-primary mb-3" th:href="@{/buyers/create}">Добавить покупателя</a>
+
+    <span th:if="${buyers.size() == 0}">Список покупателей пустой</span>
+
+    <table th:if="${buyers.size() > 0}" class="table table-hover">
+        <thead class="table-dark">
+        <tr>
+            <td>ID</td>
+            <td>Фамилия</td>
+            <td>Имя</td>
+            <td>Отчество</td>
+            <td>Телефон</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="buyer : ${buyers}">
+            <td th:text="${buyer.id}"/>
+            <td th:text="${buyer.surname}"/>
+            <td th:text="${buyer.name}"/>
+            <td th:text="${buyer.patronymic}"/>
+            <td th:text="${buyer.phoneNumber}"/>
+            <td>
+                <a class="btn btn-secondary"
+                   th:href="@{'/buyers/details/' + ${buyer.id}}">Details</a>
+            </td>
+            <td>
+                <a class="btn btn-danger"
+                   th:href="@{'/buyers/delete/' + ${buyer.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
