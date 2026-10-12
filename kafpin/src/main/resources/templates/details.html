@@ -11,18 +11,90 @@
     <h1>Информация о покупателе</h1>
 
     <table class="table table-bordered">
-        <tr><th>ID</th><td th:text="${selectedBuyer.id}"/></tr>
-        <tr><th>Фамилия</th><td th:text="${selectedBuyer.surname}"/></tr>
-        <tr><th>Имя</th><td th:text="${selectedBuyer.name}"/></tr>
-        <tr><th>Отчество</th><td th:text="${selectedBuyer.patronymic}"/></tr>
-        <tr><th>Пол</th><td th:text="${selectedBuyer.gender}"/></tr>
-        <tr><th>Национальность</th><td th:text="${selectedBuyer.nationality}"/></tr>
-        <tr><th>Рост</th><td th:text="${selectedBuyer.height}"/></tr>
-        <tr><th>Вес</th><td th:text="${selectedBuyer.weight}"/></tr>
-        <tr><th>Дата рождения</th><td th:text="${selectedBuyer.birthDate}"/></tr>
-        <tr><th>Телефон</th><td th:text="${selectedBuyer.phoneNumber}"/></tr>
-        <tr><th>Кредитная карта</th><td th:text="${selectedBuyer.creditCardNumber}"/></tr>
-        <tr><th>Банковский счёт</th><td th:text="${selectedBuyer.bankAccountNumber}"/></tr>
+        <tbody>
+        <tr>
+            <th style="width: 30%">ID</th>
+            <td th:text="${selectedBuyer.id}"/>
+        </tr>
+        <tr>
+            <th>Фамилия</th>
+            <td th:text="${selectedBuyer.lastName}"/>
+        </tr>
+        <tr>
+            <th>Имя</th>
+            <td th:text="${selectedBuyer.firstName}"/>
+        </tr>
+        <tr>
+            <th>Отчество</th>
+            <td th:text="${selectedBuyer.middleName}"/>
+        </tr>
+        <tr>
+            <th>Пол</th>
+            <td th:text="${selectedBuyer.gender}"/>
+        </tr>
+        <tr>
+            <th>Национальность</th>
+            <td th:text="${selectedBuyer.nationality}"/>
+        </tr>
+        <tr>
+            <th>Рост</th>
+            <td th:text="${selectedBuyer.height}"/>
+        </tr>
+        <tr>
+            <th>Вес</th>
+            <td th:text="${selectedBuyer.weight}"/>
+        </tr>
+        <tr>
+            <th>Дата рождения</th>
+            <td th:text="${selectedBuyer.birthDate}"/>
+        </tr>
+        <tr>
+            <th>Телефон</th>
+            <td th:text="${selectedBuyer.phone}"/>
+        </tr>
+
+        <tr>
+            <th>Номер кредитной карты</th>
+            <td th:text="${selectedBuyer.paymentInfo?.cardNumber}"/>
+        </tr>
+        <tr>
+            <th>Номер банковского счёта</th>
+            <td th:text="${selectedBuyer.paymentInfo?.bankAccount}"/>
+        </tr>
+
+        <tr>
+            <th>Почтовый индекс</th>
+            <td th:text="${selectedBuyer.address?.postalIndex}"/>
+        </tr>
+        <tr>
+            <th>Страна</th>
+            <td th:text="${selectedBuyer.address?.country}"/>
+        </tr>
+        <tr>
+            <th>Область</th>
+            <td th:text="${selectedBuyer.address?.region}"/>
+        </tr>
+        <tr>
+            <th>Район</th>
+            <td th:text="${selectedBuyer.address?.district}"/>
+        </tr>
+        <tr>
+            <th>Город</th>
+            <td th:text="${selectedBuyer.address?.city}"/>
+        </tr>
+        <tr>
+            <th>Улица</th>
+            <td th:text="${selectedBuyer.address?.street}"/>
+        </tr>
+        <tr>
+            <th>Дом</th>
+            <td th:text="${selectedBuyer.address?.home}"/>
+        </tr>
+        <tr>
+            <th>Квартира</th>
+            <td th:text="${selectedBuyer.address?.apartment}"/>
+        </tr>
+        </tbody>
     </table>
 
     <a class="btn btn-secondary" th:href="@{/buyers/main}">Назад</a>

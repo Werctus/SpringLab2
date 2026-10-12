@@ -11,23 +11,92 @@
     <h1>Редактирование покупателя</h1>
 
     <form th:action="@{/buyers/update}" th:object="${buyer}" method="post">
+
         <input type="hidden" th:field="*{id}"/>
 
-        <p>Фамилия: <input type="text" th:field="*{surname}" class="form-control"/></p>
-        <p>Имя: <input type="text" th:field="*{name}" class="form-control"/></p>
-        <p>Отчество: <input type="text" th:field="*{patronymic}" class="form-control"/></p>
-        <p>Пол: <input type="text" th:field="*{gender}" class="form-control"/></p>
-        <p>Национальность: <input type="text" th:field="*{nationality}" class="form-control"/></p>
-        <p>Рост: <input type="number" th:field="*{height}" class="form-control"/></p>
-        <p>Вес: <input type="number" th:field="*{weight}" class="form-control"/></p>
-        <p>Дата рождения: <input type="date" th:field="*{birthDate}" class="form-control"/></p>
-        <p>Телефон: <input type="text" th:field="*{phoneNumber}" class="form-control"/></p>
-        <p>Кредитная карта: <input type="text" th:field="*{creditCardNumber}" class="form-control"/></p>
-        <p>Банковский счёт: <input type="text" th:field="*{bankAccountNumber}" class="form-control"/></p>
+        <input type="hidden" th:field="*{paymentInfo.id}"/>
 
-        <p>
+        <h5 class="mt-3">Личные данные</h5>
+
+        <p>Фамилия:
+            <input type="text" th:field="*{lastName}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('lastName')}"
+                  th:errors="*{lastName}"></span>
+        </p>
+        <p>Имя:
+            <input type="text" th:field="*{firstName}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('firstName')}"
+                  th:errors="*{firstName}"></span>
+        </p>
+        <p>Отчество:
+            <input type="text" th:field="*{middleName}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('middleName')}"
+                  th:errors="*{middleName}"></span>
+        </p>
+        <p>Пол:
+            <input type="text" th:field="*{gender}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('gender')}"
+                  th:errors="*{gender}"></span>
+        </p>
+        <p>Национальность:
+            <input type="text" th:field="*{nationality}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('nationality')}"
+                  th:errors="*{nationality}"></span>
+        </p>
+        <p>Рост:
+            <input type="number" th:field="*{height}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('height')}"
+                  th:errors="*{height}"></span>
+        </p>
+        <p>Вес:
+            <input type="number" th:field="*{weight}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('weight')}"
+                  th:errors="*{weight}"></span>
+        </p>
+        <p>Дата рождения:
+            <input type="date" th:field="*{birthDate}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('birthDate')}"
+                  th:errors="*{birthDate}"></span>
+        </p>
+        <p>Телефон:
+            <input type="text" th:field="*{phone}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('phone')}"
+                  th:errors="*{phone}"></span>
+        </p>
+
+        <h5 class="mt-3">Платёжные данные</h5>
+
+        <p>Номер кредитной карты:
+            <input type="text" th:field="*{paymentInfo.cardNumber}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('paymentInfo.cardNumber')}"
+                  th:errors="*{paymentInfo.cardNumber}"></span>
+        </p>
+        <p>Номер банковского счёта:
+            <input type="text" th:field="*{paymentInfo.bankAccount}" class="form-control"/>
+            <span class="text-danger" th:if="${#fields.hasErrors('paymentInfo.bankAccount')}"
+                  th:errors="*{paymentInfo.bankAccount}"></span>
+        </p>
+
+        <h5 class="mt-3">Адрес</h5>
+
+        <p>Выберите адрес из списка:
+            <select th:field="*{address.id}" class="form-select">
+                <option value="">— выберите адрес —</option>
+                <option th:each="a : ${addresses}"
+                        th:value="${a.id}"
+                        th:text="${a.postalIndex + ', ' + a.country + ', ' + a.region
+                                 + ', ' + a.district + ', ' + a.city + ', ул. ' + a.street
+                                 + ', д. ' + a.home + ', кв. ' + a.apartment}">
+                </option>
+            </select>
+            <span class="text-danger" th:if="${#fields.hasErrors('address')}"
+                  th:errors="*{address}"></span>
+        </p>
+
+        <p class="mt-3">
             <input type="submit" value="Сохранить" class="btn btn-success"/>
             <input type="reset" value="Сброс" class="btn btn-secondary"/>
+            <a th:href="@{/buyers/main}" class="btn btn-outline-secondary">Отмена</a>
         </p>
     </form>
 </div>

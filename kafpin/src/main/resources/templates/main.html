@@ -10,6 +10,52 @@
 <div class="container mt-4">
     <h1>Список покупателей</h1>
 
+    <div class="card mb-4">
+        <div class="card-header">Поиск покупателей</div>
+        <div class="card-body">
+            <form th:action="@{/buyers/find}" th:object="${searchForm}" method="post">
+
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Фамилия (содержит)</label>
+                        <input type="text" class="form-control"
+                               th:field="*{lastName}"
+                               placeholder="Например: Иванов"/>
+                    </div>
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Город</label>
+                        <input type="text" class="form-control"
+                               th:field="*{city}"
+                               placeholder="Например: Москва"/>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-3">
+                        <label class="form-label">Пол</label>
+                        <select class="form-select" th:field="*{gender}">
+                            <option value="">— любой —</option>
+                            <option value="М">М</option>
+                            <option value="Ж">Ж</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Национальность</label>
+                        <input type="text" class="form-control"
+                               th:field="*{nationality}"
+                               placeholder="Например: Русский"/>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success">Найти</button>
+                <a th:href="@{/buyers/main}" class="btn btn-outline-secondary">Сбросить</a>
+            </form>
+        </div>
+    </div>
+
     <a class="btn btn-primary mb-3" th:href="@{/buyers/create}">Добавить покупателя</a>
 
     <span th:if="${buyers.size() == 0}">Список покупателей пустой</span>
@@ -22,6 +68,7 @@
             <td>Имя</td>
             <td>Отчество</td>
             <td>Телефон</td>
+            <td>Город</td>
             <td></td>
             <td></td>
         </tr>
@@ -29,10 +76,11 @@
         <tbody>
         <tr th:each="buyer : ${buyers}">
             <td th:text="${buyer.id}"/>
-            <td th:text="${buyer.surname}"/>
-            <td th:text="${buyer.name}"/>
-            <td th:text="${buyer.patronymic}"/>
-            <td th:text="${buyer.phoneNumber}"/>
+            <td th:text="${buyer.lastName}"/>
+            <td th:text="${buyer.firstName}"/>
+            <td th:text="${buyer.middleName}"/>
+            <td th:text="${buyer.phone}"/>
+            <td th:text="${buyer.address?.city}"/>
             <td>
                 <a class="btn btn-secondary"
                    th:href="@{'/buyers/details/' + ${buyer.id}}">Details</a>

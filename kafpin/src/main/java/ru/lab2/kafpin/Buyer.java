@@ -1,49 +1,67 @@
 package ru.lab2.kafpin;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "buyers")
 public class Buyer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @NotBlank(message = "Фамилия обязательна")
+    @Size(min = 2, max = 50, message = "Фамилия от 2 до 50 символов")
+    private String lastName;
 
-    @Column(name = "surname", nullable = false)
-    private String surname;
+    @NotBlank(message = "Имя обязательно")
+    @Size(min = 2, max = 50, message = "Имя от 2 до 50 символов")
+    private String firstName;
 
-    @Column(name = "patronymic", nullable = true)
-    private String patronymic;
+    @NotBlank(message = "Отчество обязательно")
+    @Size(min = 2, max = 50, message = "Отчество от 2 до 50 символов")
+    private String middleName;
 
-    @Column(name = "gender", nullable = false)
+    @NotBlank(message = "Пол обязателен")
+    @Pattern(regexp = "М|Ж", message = "Пол должен быть М или Ж")
     private String gender;
 
-    @Column(name = "nationality", nullable = false)
+    @NotBlank(message = "Национальность обязательна")
     private String nationality;
 
-    @Column(name = "height", nullable = false)
+    @NotNull(message = "Рост обязателен")
+    @Min(value = 50, message = "Рост не менее 50 см")
+    @Max(value = 250, message = "Рост не более 250 см")
     private Integer height;
 
-    @Column(name = "weight", nullable = false)
+    @NotNull(message = "Вес обязателен")
+    @Min(value = 3, message = "Вес не менее 3 кг")
+    @Max(value = 300, message = "Вес не более 300 кг")
     private Integer weight;
 
-    @Column(name = "birthDate", nullable = false)
-    private String birthDate;
+    @NotNull(message = "Дата рождения обязательна")
+    @Past(message = "Дата рождения должна быть в прошлом")
+    @Column(name = "birth_date", nullable = false)
+    private LocalDate birthDate;
 
-    @Column(name = "phoneNumber", nullable = false)
-    private String phoneNumber;
+    @NotBlank(message = "Телефон обязателен")
+    @Pattern(regexp = "\\+?\\d{10,15}", message = "Некорректный номер телефона")
+    private String phone;
 
-    @Column(name = "creditCardNumber", nullable = false)
-    private String creditCardNumber;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "address_id", nullable = false)
+    private Address address;
 
-    @Column(name = "bankAccountNumber", nullable = false)
-    private String bankAccountNumber;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "payment_info_id", nullable = false)
+    private PaymentInfo paymentInfo;
 
-    public Buyer() {}
+    public void setAddress(Address address) { this.address = address; }
+    public Address getAddress() { return address; }
+    public void setPaymentInfo(PaymentInfo p) { this.paymentInfo = p; }
+    public PaymentInfo getPaymentInfo() { return paymentInfo; }
 
     public Long getId() {
         return id;
@@ -53,28 +71,28 @@ public class Buyer {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPatronymic() {
-        return patronymic;
+    public String getMiddleName() {
+        return middleName;
     }
 
-    public void setPatronymic(String patronymic) {
-        this.patronymic = patronymic;
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
     }
 
     public String getGender() {
@@ -109,38 +127,19 @@ public class Buyer {
         this.weight = weight;
     }
 
-    public String getBirthDate() {
+    public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getCreditCardNumber() {
-        return creditCardNumber;
-    }
-
-    public void setCreditCardNumber(String creditCardNumber) {
-        this.creditCardNumber = creditCardNumber;
-    }
-
-    public String getBankAccountNumber() {
-        return bankAccountNumber;
-    }
-
-    public void setBankAccountNumber(String bankAccountNumber) {
-        this.bankAccountNumber = bankAccountNumber;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
-
-
-
