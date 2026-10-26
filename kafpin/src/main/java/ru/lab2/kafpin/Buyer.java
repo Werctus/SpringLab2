@@ -1,5 +1,6 @@
 package ru.lab2.kafpin;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.time.LocalDate;
@@ -52,10 +53,12 @@ public class Buyer {
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
     @JoinColumn(name = "address_id", nullable = false)
+    @JsonManagedReference
     private Address address;
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "payment_info_id", nullable = false)
+    @JsonManagedReference
     private PaymentInfo paymentInfo;
 
     public void setAddress(Address address) { this.address = address; }

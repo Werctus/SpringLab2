@@ -1,5 +1,6 @@
 package ru.lab2.kafpin;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class Address {
     private String apartment;
 
     @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonBackReference
     private List<Buyer> buyers = new ArrayList<>();
 
     public void addBuyer(Buyer buyer) {

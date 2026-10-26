@@ -53,6 +53,8 @@
             <span class="text-danger" th:if="${#fields.hasErrors('weight')}"
                   th:errors="*{weight}"></span>
         </p>
+        <p>DEBUG birthDate: [<span th:text="${buyer.birthDate}"/>]</p>
+        <p>DEBUG class: [<span th:text="${buyer.birthDate != null ? buyer.birthDate.class.name : 'NULL'}"/>]</p>
         <p>Дата рождения:
             <input type="date" th:field="*{birthDate}" class="form-control"/>
             <span class="text-danger" th:if="${#fields.hasErrors('birthDate')}"
