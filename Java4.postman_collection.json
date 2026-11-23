@@ -1,0 +1,251 @@
+{
+  "info": {
+    "_postman_id": "a693e7e6-8a23-4509-add2-01f10e6193b6",
+    "name": "Java4",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59206091",
+    "_collection_link": "https://go.postman.co/collection/59206091-a693e7e6-8a23-4509-add2-01f10e6193b6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "GET all buyers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/buyers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET buyer by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/buyers/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST buyer",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"lastName\": \"Хренова\",\r\n  \"firstName\": \"Гадя\",\r\n  \"middleName\": \"Петрович\",\r\n  \"gender\": \"Ж\",\r\n  \"nationality\": \"Русский\",\r\n  \"height\": 180,\r\n  \"weight\": 75,\r\n  \"birthDate\": \"1990-05-15\",\r\n  \"phone\": \"+79123456789\",\r\n  \"addressId\": 1,\r\n  \"cardNumber\": \"4276123456781234\",\r\n  \"bankAccount\": \"40817810099910004312\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/buyers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "POST validate",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"lastName\": \"И\",\r\n  \"firstName\": \"\",\r\n  \"gender\": \"X\",\r\n  \"height\": 10,\r\n  \"weight\": 500,\r\n  \"birthDate\": \"2030-01-01\",\r\n  \"phone\": \"abc\",\r\n  \"addressId\": 999,\r\n  \"cardNumber\": \"\",\r\n  \"bankAccount\": \"\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/buyers",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PUT update all",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"lastName\": \"Хренова\",\r\n  \"firstName\": \"Гадя\",\r\n  \"middleName\": \"Петрович\",\r\n  \"gender\": \"Ж\",\r\n  \"nationality\": \"Русский\",\r\n  \"height\": 173,\r\n  \"weight\": 72,\r\n  \"birthDate\": \"1998-05-15\",\r\n  \"phone\": \"+79123456789\",\r\n  \"addressId\": 1,\r\n  \"cardNumber\": \"4276123456781234\",\r\n  \"bankAccount\": \"40817810099910004312\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/buyers/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "PATCH update part",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"phone\": \"+79123456700\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/buyers/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET satistics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/buyers/statistics",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers",
+            "statistics"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "DELETE buyer",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/buyers/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GET deleted buyer",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/buyers/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "buyers",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
