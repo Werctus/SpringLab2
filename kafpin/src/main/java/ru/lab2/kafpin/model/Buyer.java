@@ -1,8 +1,10 @@
-package ru.lab2.kafpin;
+package ru.lab2.kafpin.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
+
 import java.time.LocalDate;
 
 @Entity

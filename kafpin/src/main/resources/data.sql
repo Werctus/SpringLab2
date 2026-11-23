@@ -1,3 +1,5 @@
+
+
 INSERT INTO addresses
 (postal_index,
 country,
@@ -117,3 +119,4 @@ VALUES
 '+89108859229',
 3,
 3);
+

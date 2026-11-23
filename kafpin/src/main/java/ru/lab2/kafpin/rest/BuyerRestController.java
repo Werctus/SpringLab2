@@ -1,3 +1,4 @@
+/*
 package ru.lab2.kafpin.rest;
 
 import jakarta.validation.Valid;
@@ -6,9 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import ru.lab2.kafpin.dto.BuyerDTO;
 import ru.lab2.kafpin.dto.BuyerResponse;
-import ru.lab2.kafpin.Address;
-import ru.lab2.kafpin.Buyer;
-import ru.lab2.kafpin.PaymentInfo;
+import ru.lab2.kafpin.model.Address;
+import ru.lab2.kafpin.model.Buyer;
+import ru.lab2.kafpin.model.PaymentInfo;
 import ru.lab2.kafpin.repository.AddressRepository;
 import ru.lab2.kafpin.repository.BuyerRepository;
 
@@ -29,7 +30,6 @@ public class BuyerRestController {
         this.addressRepository = addressRepository;
     }
 
-    // GET ALL
     @GetMapping
     public List<BuyerResponse> getAllBuyers() {
         return buyerRepository.findAll().stream()
@@ -37,7 +37,6 @@ public class BuyerRestController {
                 .collect(Collectors.toList());
     }
 
-    // GET BY ID
     @GetMapping("/{id}")
     public BuyerResponse getBuyerById(@PathVariable Long id) {
         Buyer buyer = buyerRepository.findById(id)
@@ -45,7 +44,6 @@ public class BuyerRestController {
         return toResponse(buyer);
     }
 
-    // CREATE (POST)
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public BuyerResponse createBuyer(@Valid @RequestBody BuyerDTO dto) {
@@ -74,7 +72,6 @@ public class BuyerRestController {
         return toResponse(buyerRepository.save(buyer));
     }
 
-    // UPDATE (PUT)
     @PutMapping("/{id}")
     public BuyerResponse updateBuyer(@PathVariable Long id, @Valid @RequestBody BuyerDTO dto) {
         Buyer buyer = buyerRepository.findById(id)
@@ -105,7 +102,6 @@ public class BuyerRestController {
         return toResponse(buyerRepository.save(buyer));
     }
 
-    // PARTIAL UPDATE (PATCH)
     @PatchMapping("/{id}")
     public BuyerResponse partialUpdateBuyer(@PathVariable Long id, @RequestBody Map<String, Object> updates) {
         Buyer buyer = buyerRepository.findById(id)
@@ -136,7 +132,6 @@ public class BuyerRestController {
         return toResponse(buyerRepository.save(buyer));
     }
 
-    // DELETE
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteBuyer(@PathVariable Long id) {
@@ -146,7 +141,6 @@ public class BuyerRestController {
         buyerRepository.deleteById(id);
     }
 
-    // STATISTICS (Сложная логика)
     @GetMapping("/statistics")
     public Map<String, Object> getStatistics() {
         List<Buyer> allBuyers = buyerRepository.findAll();
@@ -165,12 +159,12 @@ public class BuyerRestController {
         // Средний рост и вес
         double avgHeight = allBuyers.stream()
                 .filter(b -> b.getHeight() != null)
-                .mapToInt(Buyer::getHeight)
+                .mapToInt(b -> b.getHeight()) // Заменили Buyer::getHeight на b -> b.getHeight()
                 .average().orElse(0.0);
 
         double avgWeight = allBuyers.stream()
                 .filter(b -> b.getWeight() != null)
-                .mapToInt(Buyer::getWeight)
+                .mapToInt(b -> b.getWeight()) // Заменили Buyer::getWeight на b -> b.getWeight()
                 .average().orElse(0.0);
 
         return Map.of(
@@ -181,7 +175,6 @@ public class BuyerRestController {
         );
     }
 
-    // ВСПОМОГАТЕЛЬНЫЙ МЕТОД МАППИНГА Entity -> Response
     private BuyerResponse toResponse(Buyer buyer) {
         BuyerResponse r = new BuyerResponse();
         r.setId(buyer.getId());
@@ -213,3 +206,4 @@ public class BuyerRestController {
         return r;
     }
 }
+*/

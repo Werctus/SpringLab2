@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="utf-8"/>
     <title>Покупатели</title>
@@ -8,6 +10,21 @@
 </head>
 <body>
 <div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <div sec:authorize="isAuthenticated()">
+            Авторизован как <strong><span sec:authentication="name"></span></strong>
+            <span class="badge bg-secondary"
+                  sec:authentication="principal.authorities"></span>
+        </div>
+        <div sec:authorize="!isAuthenticated()">
+            <a th:href="@{/login}" class="btn btn-outline-primary btn-sm">Войти</a>
+        </div>
+        <form th:action="@{/my-logout}" method="post" sec:authorize="isAuthenticated()">
+            <button type="submit" class="btn btn-outline-danger btn-sm">Выйти</button>
+        </form>
+    </div>
+
     <h1>Список покупателей</h1>
 
     <div class="card mb-4">
@@ -19,8 +36,7 @@
                     <div class="col-md-6">
                         <label class="form-label">Фамилия (содержит)</label>
                         <input type="text" class="form-control"
-                               th:field="*{lastName}"
-                               placeholder="Например: Иванов"/>
+                               th:field="*{lastName}"/>
                     </div>
                 </div>
 
@@ -28,8 +44,7 @@
                     <div class="col-md-6">
                         <label class="form-label">Город</label>
                         <input type="text" class="form-control"
-                               th:field="*{city}"
-                               placeholder="Например: Москва"/>
+                               th:field="*{city}"/>
                     </div>
                 </div>
 
@@ -45,8 +60,7 @@
                     <div class="col-md-3">
                         <label class="form-label">Национальность</label>
                         <input type="text" class="form-control"
-                               th:field="*{nationality}"
-                               placeholder="Например: Русский"/>
+                               th:field="*{nationality}"/>
                     </div>
                 </div>
 
@@ -56,7 +70,10 @@
         </div>
     </div>
 
-    <a class="btn btn-primary mb-3" th:href="@{/buyers/create}">Добавить покупателя</a>
+    <!-- Кнопка добавления — только для ADMIN -->
+    <a class="btn btn-primary mb-3"
+       th:href="@{/buyers/create}"
+       sec:authorize="hasRole('ADMIN')">Добавить покупателя</a>
 
     <span th:if="${buyers.size() == 0}">Список покупателей пустой</span>
 
@@ -86,8 +103,10 @@
                    th:href="@{'/buyers/details/' + ${buyer.id}}">Details</a>
             </td>
             <td>
+                <!-- Удаление — только для ADMIN -->
                 <a class="btn btn-danger"
-                   th:href="@{'/buyers/delete/' + ${buyer.id}}">Delete</a>
+                   th:href="@{'/buyers/delete/' + ${buyer.id}}"
+                   sec:authorize="hasRole('ADMIN')">Delete</a>
             </td>
         </tr>
         </tbody>

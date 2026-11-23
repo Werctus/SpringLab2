@@ -1,3 +1,4 @@
+/*
 package ru.lab2.kafpin.entities;
 
 import jakarta.validation.Valid;
@@ -5,9 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import ru.lab2.kafpin.Address;
-import ru.lab2.kafpin.Buyer;
-import ru.lab2.kafpin.PaymentInfo;
+import ru.lab2.kafpin.model.Buyer;
+import ru.lab2.kafpin.model.PaymentInfo;
 import ru.lab2.kafpin.repository.AddressRepository;
 import ru.lab2.kafpin.repository.BuyerRepository;
 import ru.lab2.kafpin.repository.PaymentInfoRepository;
@@ -126,4 +126,4 @@ public class BuyerController {
         model.addAttribute("searchForm", form);
         return "main";
     }
-}
+}*/

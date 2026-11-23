@@ -1,7 +1,8 @@
-package ru.lab2.kafpin;
+package ru.lab2.kafpin.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.*;
 
 @Entity
@@ -24,6 +25,7 @@ public class PaymentInfo {
 
     @OneToOne(mappedBy = "paymentInfo", fetch = FetchType.LAZY)
     @JsonBackReference
+    @JsonIgnore
     private Buyer buyer;
 
     public Long getId() {

@@ -1,14 +1,17 @@
-package ru.lab2.kafpin;
+package ru.lab2.kafpin.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.validation.constraints.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "addresses")
 public class Address {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -39,8 +42,10 @@ public class Address {
     @NotBlank(message = "Квартира обязателен")
     private String apartment;
 
-    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "address", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonBackReference
+    @JsonIgnore
     private List<Buyer> buyers = new ArrayList<>();
 
     public void addBuyer(Buyer buyer) {
